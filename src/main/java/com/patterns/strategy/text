@@ -1,0 +1,24 @@
+@startuml
+interface ScholarshipStrategy {
+    +calculateDiscount(tuition: double): double
+}
+
+class GPAStrategy {
+    +calculateDiscount(tuition: double): double
+}
+
+class PoorHouseholdStrategy {
+    +calculateDiscount(tuition: double): double
+}
+
+class StudentFeeCalculator {
+    -strategy: ScholarshipStrategy
+    +setStrategy(strategy: ScholarshipStrategy)
+    +calculateFinalFee(tuition: double)
+}
+
+ScholarshipStrategy <|.. GPAStrategy
+ScholarshipStrategy <|.. PoorHouseholdStrategy
+StudentFeeCalculator --> ScholarshipStrategy
+
+@enduml
